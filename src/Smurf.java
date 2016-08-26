@@ -14,8 +14,13 @@ public class Smurf {
 	}
 
 	public String getName() {
+		if(name.equals("Kemestar")){
+			return "My name is Kemestar and I am Papa Smurf";
+		}
+		else{
 		return "My name is " + name + " Smurf.";
-	}
+		}
+		}
 
 	public void eat() {
 		System.out.println(name + " Smurf is eating Smurfberries.");
@@ -26,6 +31,9 @@ public class Smurf {
 		// 3. Fill in this method
 		if(name.equals("Papa Smurf")){
 		return "I Have A Red Hat!";
+		}
+		if(name.equals("Kemestar")){
+			return "I Got Files on Top of Files...";
 		}
 		else{
 			return "I Have A White Hat";
