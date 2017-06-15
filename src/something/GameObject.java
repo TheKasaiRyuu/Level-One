@@ -9,12 +9,13 @@ public class GameObject {
 	int height;
 	
 	void update(){
-		
+		x=y+1;
+		y=y+1;
 		
 		
 	}
 	void draw(Graphics g){
-		g.fillRect(10, 10, 100, 100);
+		g.fillRect(x, y, 100, 100);
 		
 		
 	}
