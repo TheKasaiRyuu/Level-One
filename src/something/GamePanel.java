@@ -1,6 +1,7 @@
 package something;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Colors.Blues;
 import org.teachingextensions.logo.Colors.Reds;
 
@@ -19,32 +21,37 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
+	Font titleFont;
 	int currentState = MENU_STATE;
 
 	void startGame() {
 		tick.start();
-
+		
 	}
 
 	GamePanel() {
-
+		titleFont = new Font("Arial",Font.PLAIN,48);
+		
 	}
 
 	void updateMenuState() {
-
+	
 	}
 
 	void updateGameState() {
 
 	}
-
+	
 	void updateEndState() {
-
+	
 	}
 
 	void drawMenuState(Graphics g) {
 		g.setColor(Blues.CornflowerBlue);
 		g.fillRect(0, 0, 1000, 1000);
+		g.setFont(titleFont);
+		g.setColor(Colors.Grays.Black);
+		g.drawString("League Invaders", 225, 250);
 	}
 
 	void drawGameState(Graphics g) {
@@ -55,6 +62,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawEndState(Graphics g) {
 		g.setColor(Reds.Crimson);
 		g.fillRect(0, 0, 1000, 1000);
+		g.setFont(titleFont);
+		g.setColor(Colors.Grays.Black);
+		g.drawString("You Lose, Score:", 225, 250);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -92,10 +102,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == 10){
-			if(currentState > END_STATE){
+			//System.out.println("enter");
+			if(currentState == MENU_STATE){
+				currentState = GAME_STATE;
+			}
+			else if(currentState == END_STATE){
 				currentState = MENU_STATE;
-			}}
-		
+			}
+			else if(currentState == GAME_STATE){
+				currentState = END_STATE;
+			}
+		}	
 	}
 
 	@Override
