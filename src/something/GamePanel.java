@@ -17,7 +17,9 @@ import org.teachingextensions.logo.Colors.Reds;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer tick = new Timer(1000 / 60, this);
-	GameObject Objecto = new GameObject();
+	GameObject Objecto = new GameObject(0,700,50,50);
+	int RocketX = 250;
+	RocketShip rocketo = new RocketShip(RocketX,700,50,50);
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
@@ -39,7 +41,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-
+		rocketo.update();
 	}
 	
 	void updateEndState() {
@@ -57,6 +59,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, 1000, 1000);
+		rocketo.draw(g);
 	}
 
 	void drawEndState(Graphics g) {
@@ -113,6 +116,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = END_STATE;
 			}
 		}	
+		if(e.getKeyCode() == 37){
+			RocketX = RocketX-10;
+		}else if(e.getKeyCode() == 49){
+			RocketX = RocketX+10;
+		}
+		
 	}
 
 	@Override
