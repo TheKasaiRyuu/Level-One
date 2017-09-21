@@ -11,9 +11,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import org.teachingextensions.logo.Colors;
-import org.teachingextensions.logo.Colors.Blues;
-import org.teachingextensions.logo.Colors.Reds;
+//import org.teachingextensions.logo.Colors;
+//import org.teachingextensions.logo.Colors.Blues;
+//import org.teachingextensions.logo.Colors.Reds;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer tick = new Timer(1000 / 60, this);
@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	GamePanel() {
 		titleFont = new Font("Arial",Font.PLAIN,48);
-		
+		startGame();
 	}
 
 	void updateMenuState() {
@@ -49,24 +49,24 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawMenuState(Graphics g) {
-		g.setColor(Blues.CornflowerBlue);
-		g.fillRect(0, 0, 1000, 1000);
+		g.setColor(Color.blue);
+		g.fillRect(0, 0, LeagueInvaders.finalW, LeagueInvaders.finalH);
 		g.setFont(titleFont);
-		g.setColor(Colors.Grays.Black);
+		g.setColor(Color.black);
 		g.drawString("League Invaders", 225, 250);
 	}
 
 	void drawGameState(Graphics g) {
 		g.setColor(Color.black);
-		g.fillRect(0, 0, 1000, 1000);
+		g.fillRect(0, 0, LeagueInvaders.finalW, LeagueInvaders.finalH);
 		rocketo.draw(g);
 	}
 
 	void drawEndState(Graphics g) {
-		g.setColor(Reds.Crimson);
-		g.fillRect(0, 0, 1000, 1000);
+		g.setColor(Color.red);
+		g.fillRect(0, 0, LeagueInvaders.finalW, LeagueInvaders.finalH);
 		g.setFont(titleFont);
-		g.setColor(Colors.Grays.Black);
+		g.setColor(Color.black);
 		g.drawString("You Lose, Score:", 225, 250);
 	}
 
@@ -104,6 +104,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println(e.getKeyCode());
 		if(e.getKeyCode() == 10){
 			//System.out.println("enter");
 			if(currentState == MENU_STATE){
@@ -117,9 +118,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 		}	
 		if(e.getKeyCode() == 37){
-			RocketX = RocketX-10;
-		}else if(e.getKeyCode() == 49){
-			RocketX = RocketX+10;
+			System.out.println("Left");
+			rocketo.x = rocketo.x-10;
+			
+		}else if(e.getKeyCode() == 39){
+			System.out.println("Right");
+			rocketo.x = rocketo.x+10;
 		}
 		
 	}
